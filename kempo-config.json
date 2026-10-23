@@ -1,0 +1,21 @@
+{
+  "docs": "https://github.com/dustinpoissant/kempo-resend#readme",
+  "git": "https://github.com/dustinpoissant/kempo-resend",
+  "hooks": {
+    "email:send": "./hooks/send.js"
+  },
+  "settings": [
+    {
+      "name": "resend_from",
+      "value": "",
+      "type": "string",
+      "description": "The address to send as through Resend, instead of the site's Email from setting, as name@yourdomain.com or Shop Name <name@yourdomain.com>. Leave empty to use Email from. For testing, Resend lets any account send as onboarding@resend.dev, but only to the address you signed up to Resend with"
+    },
+    {
+      "name": "resend_api_key",
+      "value": "",
+      "type": "secret",
+      "description": "Your Resend API key, from resend.com/api-keys. Stored encrypted and never shown again. The address emails are sent from must be on a domain you have verified with Resend"
+    }
+  ]
+}

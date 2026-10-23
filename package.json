@@ -1,0 +1,32 @@
+{
+  "name": "kempo-resend",
+  "version": "0.1.0",
+  "description": "Sends the emails kempo logs through Resend (resend.com), with the API key kept as an encrypted setting.",
+  "license": "MIT",
+  "author": "Dustin Poissant",
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  },
+  "files": [
+    "admin",
+    "hooks",
+    "server",
+    "install.js",
+    "update.js",
+    "uninstall.js",
+    "kempo-config.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dustinpoissant/kempo-resend.git"
+  },
+  "peerDependencies": {
+    "kempo": ">=4.8.0"
+  },
+  "exports": {
+    "./install": "./install.js",
+    "./update": "./update.js",
+    "./uninstall": "./uninstall.js"
+  }
+}
