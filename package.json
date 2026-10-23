@@ -1,6 +1,6 @@
 {
   "name": "kempo-resend",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Sends the emails kempo logs through Resend (resend.com), with the API key kept as an encrypted setting.",
   "license": "MIT",
   "author": "Dustin Poissant",
