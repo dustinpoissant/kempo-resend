@@ -3,7 +3,7 @@
   "version": "0.1.1",
   "description": "Sends the emails kempo logs through Resend (resend.com), with the API key kept as an encrypted setting.",
   "license": "MIT",
-  "author": "Dustin Poissant",
+  "author": "Dustin Poissant <dustinpoissant@gmail.com>",
   "type": "module",
   "scripts": {
     "test": "node --test"
