@@ -22,7 +22,7 @@
     "url": "git+https://github.com/dustinpoissant/kempo-resend.git"
   },
   "peerDependencies": {
-    "kempo": ">=4.8.0"
+    "kempo": ">=4.9.6"
   },
   "exports": {
     "./install": "./install.js",
