@@ -7,7 +7,7 @@ It has no dependencies: it makes one HTTPS call to Resend's API per email.
 ## Setup
 
 1. Install it from Admin > Extensions.
-2. On **Admin > Settings**, open the **Resend** tab and paste your API key (from [resend.com/api-keys](https://resend.com/api-keys)). It is stored encrypted and never shown again.
+2. On **Admin > Emails**, open the **Resend** tab and paste your API key (from [resend.com/api-keys](https://resend.com/api-keys)). It is stored encrypted and never shown again.
 3. Choose what Resend sends as. Either set **Email from** (System tab) to an address on a domain you have verified with Resend, such as `Your Shop <orders@yourdomain.com>`, or set **Resend From** on the Resend tab, which is used for Resend only and wins over Email from. Resend refuses any other sender.
 
    **Trying it before you verify a domain:** put `onboarding@resend.dev` in **Resend From** on the Resend tab. Resend lets any account send as that address, but only to the email address you signed up to Resend with.
@@ -19,7 +19,7 @@ It has no dependencies: it makes one HTTPS call to Resend's API per email.
 
 ## What it does
 
-For each email kempo asks to send, the handler posts `{ from, to, subject, html }` to `https://api.resend.com/emails` with `Authorization: Bearer <key>`, and answers kempo with `{ sent: true, provider: 'resend', messageId }` (the id Resend gives) or `{ sent: false, error }`. Kempo records the result in the log, tries a failed email again (the **Email max retries** setting, 1 by default), and keeps the log for the retention settings. A failure shows in the log in Resend's own words:
+For each email kempo asks to send, the handler posts `{ from, to, subject, html }` (and `reply_to`, when the email has a reply-to, as kempo-forms sets for a notification) to `https://api.resend.com/emails` with `Authorization: Bearer <key>`, and answers kempo with `{ sent: true, provider: 'resend', messageId }` (the id Resend gives) or `{ sent: false, error }`. Kempo records the result in the log, tries a failed email again (the **Email max retries** setting, 1 by default), and keeps the log for the retention settings. A failure shows in the log in Resend's own words:
 
 | Resend says | The log says |
 |---|---|

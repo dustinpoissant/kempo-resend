@@ -2,7 +2,8 @@
   Sending one email through Resend's HTTP API (resend.com/docs/api-reference/emails/send-email). It is given the key and a `fetch`, so it
   is tested with a fake one and Resend is never needed. There is no SDK: the call is one POST.
 
-  `POST https://api.resend.com/emails` with `Authorization: Bearer <key>` and `{ from, to, subject, html }`. A success is 200 with
+  `POST https://api.resend.com/emails` with `Authorization: Bearer <key>` and `{ from, to, subject, html }`, plus `reply_to` (a list of
+  addresses) when the email has a reply-to. A success is 200 with
   `{ id }`. A failure is a 4xx or 5xx with `{ statusCode, name, message }`, such as 401 for a bad key, 403 for a sender address on a
   domain that is not verified, 422 for an address that is not valid, 429 when sending too fast.
 */
@@ -27,7 +28,7 @@ export const sendWithResend = async ({ apiKey, email, from: override = '', fetch
     response = await fetchImpl(ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` },
-      body: JSON.stringify({ from, to: [email.to], subject: email.subject, html: email.html }),
+      body: JSON.stringify({ from, to: [email.to], ...(email.replyTo ? { reply_to: [email.replyTo] } : {}), subject: email.subject, html: email.html }),
     });
   } catch(error) {
     return { sent: false, error: `Resend could not be reached: ${error?.message ?? 'no answer'}` };

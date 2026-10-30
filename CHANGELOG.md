@@ -6,6 +6,7 @@ All notable changes to `kempo-resend` are documented in this file.
 
 ### Added
 
+- **Reply-To.** An email that has a reply-to (kempo releases after 4.9.12 have `sendEmail({ replyTo })`, which kempo-forms sets to the visitor's address) is sent with Resend's `reply_to`. Older kempo gives no reply-to, so nothing changes there.
 - **A Resend From setting on the Resend tab** (`resend_from`), used for Resend only and winning over the site's Email from, so Resend can send as `onboarding@resend.dev` while testing, or as an address on its verified domain, whatever the rest of the site sends as. An address that is not an address is refused before anything is sent.
 
 - **A refused sender domain is explained:** when Resend says the domain is not verified, the log also says which sender it was sent as and to set Email from, on the System tab, to an address on a verified domain.

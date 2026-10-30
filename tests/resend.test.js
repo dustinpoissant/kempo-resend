@@ -32,6 +32,15 @@ test('an email is sent with a bearer key and the from, to, subject and html, and
   assert.deepEqual(calls[0].body, { from: 'Shop <shop@example.com>', to: ['ann@example.com'], subject: 'Hello', html: '<p>Hi</p>' });
 });
 
+test('a reply-to address is sent as reply_to, and an email with none has no such field', async () => {
+  const withReply = fakeFetch(200, { id: 're_1' });
+  await sendWithResend({ apiKey: 'k', email: { ...email, replyTo: 'Ann Lee <ann@visitor.test>' }, fetchImpl: withReply.impl });
+  assert.deepEqual(withReply.calls[0].body, { from: 'Shop <shop@example.com>', to: ['ann@example.com'], reply_to: ['Ann Lee <ann@visitor.test>'], subject: 'Hello', html: '<p>Hi</p>' });
+  const without = fakeFetch(200, { id: 're_2' });
+  await sendWithResend({ apiKey: 'k', email: { ...email, replyTo: null }, fetchImpl: without.impl });
+  assert.equal('reply_to' in without.calls[0].body, false);
+});
+
 test('with no key nothing is asked of Resend, and the reason says where to add one', async () => {
   const { impl, calls } = fakeFetch(200, { id: 'x' });
   const result = await sendWithResend({ apiKey: '', email, fetchImpl: impl });
