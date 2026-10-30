@@ -85,8 +85,8 @@ test('the config declares the hook, the key is a secret, and the files it names 
   const from = config.settings.find(setting => setting.name === 'resend_from');
   assert.equal(from.type, 'string');
   assert.equal(from.value, '');
-  const tab = await readFile(path.join(root, 'admin', 'settings-tab.global.html'), 'utf8');
-  assert.match(tab, /location="admin-settings-tabs"/);
+  const tab = await readFile(path.join(root, 'admin', 'emails-tab.global.html'), 'utf8');
+  assert.match(tab, /location="admin-emails-tabs"/);
   assert.match(tab, /<k-settings-panel owner="kempo-resend">/);
 });
 
